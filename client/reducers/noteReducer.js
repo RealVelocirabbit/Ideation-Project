@@ -32,6 +32,16 @@ const noteSlice = createSlice({
       state.Rejected = state.Rejected.slice();
       state.Rejected = action.payload.Rejected;
     },
+    deletePost: (state, action) => {
+      console.log(`delepost`, action.payload);
+      state.Interested.splice(
+        state.Interested.findIndex((note) => {
+          console.log(note);
+          note.id === action.payload;
+        }),
+        1
+      );
+    },
   },
 });
 
