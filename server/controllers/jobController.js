@@ -37,10 +37,10 @@ const jobController = {
       console.log("jobID: ", jobId);
       const { company, title, salary, status, link } = req.body;
 
-      if (company.length && title.length && status.length) {
+      if (status.length) {
         const updatedJob = await Job.updateOne(
-          { id: jobId },
-          { company, title, salary, status, link }
+          { _id: jobId },
+          { status }
         );
         return next();
       } else {

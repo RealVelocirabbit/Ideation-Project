@@ -2,8 +2,17 @@ import React, { useEffect } from "react";
 import { Button } from "react-bootstrap";
 import { useDispatch } from "react-redux";
 import { deletePost } from "../reducers/noteReducer.js";
+import { useDrag } from "react-dnd";
+
 
 const Post = ({ company, title, salary, status, link, _id }) => {
+  const [{ isDragging }, drag] = useDrag(() => ({
+    type: "post",
+    item: { id: _id },
+    collect: (monitor) => ({
+      isDragging: !!monitor.isDragging(),
+    }),
+  }));
   const dispatch = useDispatch();
   let colorArray = [
     "lightblue",
@@ -21,7 +30,7 @@ const Post = ({ company, title, salary, status, link, _id }) => {
   };
 
   return (
-    <div className="postBox" style={{ backgroundColor: `${randomColor}` }}>
+    <div className="postBox" style={{ backgroundColor: `${randomColor}` }} ref={drag}>
       <Button onClick={() => helper()}>X</Button>
       <p>
         <b>Company: </b>
