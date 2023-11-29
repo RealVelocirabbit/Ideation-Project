@@ -35,12 +35,13 @@ const jobController = {
     try {
       const jobId = req.params.id;
       console.log("jobID: ", jobId);
-      const { company, title, salary, status, link } = req.body;
-
-      if (company.length && title.length && status.length) {
+      console.log("req.body: ",req.body)
+      const { status } = req.body;
+      console.log("status: ", status)
+      if (status.length) {
         const updatedJob = await Job.updateOne(
-          { id: jobId },
-          { company, title, salary, status, link }
+          { _id: jobId },
+          { status }
         );
         return next();
       } else {
