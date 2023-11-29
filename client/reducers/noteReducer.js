@@ -39,13 +39,12 @@ const noteSlice = createSlice({
     },
     deletePost: (state, action) => {
       const { _id, status } = action.payload;
-      console.log("status: ", status); //followUp instead of FollowedUp
+      console.log("status: ", typeof status); //FollowedUp
       console.log(_id);
-
-      state[{ status }].splice(
-        state[{ status }].findIndex((note) => {
-          console.log("note: ", note);
-          return note.id === _id;
+      state[status].splice(
+        state[status].findIndex((ele) => {
+          console.log("note: ", ele);
+          return ele.id === _id;
         }),
         1
       );

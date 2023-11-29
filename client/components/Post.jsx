@@ -29,8 +29,12 @@ const Post = ({ company, title, salary, status, link, _id }) => {
   };
 
   return (
-    <div className="postBox" style={{ backgroundColor: `${randomColor}` }} ref={drag}>
-      <Button onClick={() => helper()}>X</Button>
+    <div className="postBox" 
+    style={{ backgroundColor: `${randomColor}` }} 
+    ref={drag}>
+      <Button className="postBoxBtn" onClick={() => helper()}>
+        X
+        </Button>
       <p>
         <b>Company: </b>
         {company}
@@ -49,7 +53,7 @@ const Post = ({ company, title, salary, status, link, _id }) => {
       </p>
       <p>
         <b>Job Link: </b>
-        <a href={link}>Click on Link</a>
+        <a href={"https://" + link}>Click on Link</a>
       </p>
     </div>
   );

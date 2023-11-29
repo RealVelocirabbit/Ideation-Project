@@ -14,7 +14,14 @@ const PopupForm = () => {
   const [salary, setSalary] = useState("");
   const [status, setStatus] = useState("");
   const [link, setLink] = useState("");
-
+  const statusOptions = [
+    "Interested",
+    "Applied",
+    "Interviewed",
+    "FollowedUp",
+    "Accepted",
+    "Rejected",
+  ];
   function handleClick() {
     let formObj = {
       company: company,
@@ -55,7 +62,7 @@ const PopupForm = () => {
       >
         <Modal.Header closeButton>
           {/* popup title bar */}
-          <Modal.Title>Create New Job</Modal.Title>
+          <Modal.Title>Create New Track</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <form
@@ -103,7 +110,7 @@ const PopupForm = () => {
               />
             </label>
             <label>
-              {" "}
+              {/* {" "} */}
               Status:
               <select
                 id="status"
@@ -112,14 +119,13 @@ const PopupForm = () => {
                   setStatus(e.target.value);
                 }}
               >
-                {/* is there a way to dynamically show these based on the status array? */}
+                {/* Is there a way to dynamically show these based on the status array? */}
                 <option value="blank">Select Status</option>
-                <option value="Interested">Interested</option>
-                <option value="Applied">Applied</option>
-                <option value="Interviewed">Interviewed</option>
-                <option value="FollowedUp">Followed Up</option>
-                <option value="Accepted">Accepted</option>
-                <option value="Rejected">Rejected</option>
+                {statusOptions.map((statusOption) => (
+                  <option key={statusOption} value={statusOption}>
+                    {statusOption}
+                  </option>
+                ))}
               </select>
             </label>
             <label>
@@ -152,11 +158,19 @@ const PopupForm = () => {
         </Modal.Body>
         <Modal.Footer>
           {/* do we need this secondary button? or remove the hide? */}
-          <Button variant="secondary" onClick={handleClose}>
-            Don't Save
+          <Button
+            style={{ backgroundColor: "rgb(220, 53, 69)" }}
+            variant="secondary"
+            onClick={handleClose}
+          >
+            Cancel
           </Button>
           {/* when they click track button - send to database  */}
-          <Button variant="primary" onClick={handleClick}>
+          <Button
+            style={{ backgroundColor: "rgb(0, 165, 80)" }}
+            variant="primary"
+            onClick={handleClick}
+          >
             Let's Track It!
           </Button>
         </Modal.Footer>

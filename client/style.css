@@ -1,4 +1,15 @@
 /* Header Bar */
+body{
+  /* background-image: url("../bgi-2.jpeg"); */
+  background-size: cover;
+  background-color: #cccccc;
+  /* background-repeat: no-repeat; */
+
+}
+.modal{
+  /* background-color: #cccccc; */
+  
+}
 .headerContainer {
   display: flex;
   border: 1px solid black;
@@ -58,18 +69,23 @@
 }
 
 .postBox {
-  border: 1px solid grey;
+  border: 2px solid rgb(22, 22, 22);
   padding: 5px;
   margin: 5px;
   width: 125px;
+  border-radius: 15px;
   background-color: lightblue;
 }
 
 .postBox:hover {
-  box-shadow: 0px 0px 20px grey;
+  box-shadow: 2px 2px 20px grey;
 }
 
 .postBox p {
   margin: 0px;
   font-size: x-small;
+}
+
+.postBoxBtn{
+  border-radius: 32px;
 }
