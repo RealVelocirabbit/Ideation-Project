@@ -32,5 +32,8 @@ describe("testing react components", () => {
         text.getByText("65662246b68f162dffa80a77").nextSibling
       ).toHaveTextContent("test company");
     });
+    xtest("testing usedrag & usedrop change the status on the post ", () => {
+      expect()
+    })
   });
 });
