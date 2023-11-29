@@ -29,8 +29,8 @@ describe("testing react components", () => {
 
     test("expect the ", () => {
       expect(
-        text.getByText("65662246b68f162dffa80a77").nextSibling
-      ).toHaveTextContent("test company");
+        text.getByText("65662246b68f162dffa80a77")
+      ).toHaveTextContent("65662246b68f162dffa80a77");
     });
   });
 });

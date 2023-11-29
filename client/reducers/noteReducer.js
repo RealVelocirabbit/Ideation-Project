@@ -1,4 +1,4 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, current } from "@reduxjs/toolkit";
 
 const initialState = {
   Interested: [],
@@ -18,7 +18,7 @@ const noteSlice = createSlice({
       // statusArray.forEach(ele => {
       //   state[ele] = action.payload[ele].slice();
       // })
-
+      
       state.Interested = state.Interested.slice();
       state.Interested = action.payload.Interested;
 
@@ -39,13 +39,12 @@ const noteSlice = createSlice({
     },
     deletePost: (state, action) => {
       const { _id, status } = action.payload;
-      console.log("status: ", status); //followUp instead of FollowedUp
-      console.log(_id);
-
-      state[{ status }].splice(
-        state[{ status }].findIndex((note) => {
-          console.log("note: ", note);
-          return note.id === _id;
+    
+      state[status].splice(
+        state[status].findIndex((ele) => {
+          console.log("note", typeof ele);
+          console.log(current(ele))
+          return ele.id === _id;
         }),
         1
       );
