@@ -1,51 +1,54 @@
-const path = require('path');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
+const path = require("path");
+const HtmlWebpackPlugin = require("html-webpack-plugin");
 
 module.exports = {
   mode: process.env.NODE_ENV,
   //index.js file location
   entry: {
-    src: './client/index.js',
+    src: "./client/index.js",
   },
   //where to save final build files
   output: {
-    filename: 'bundle.js',
-    path: path.resolve(__dirname, 'build'),
+    path: path.resolve(__dirname, "build"),
+    filename: "bundle.js",
+    clean: true,
   },
+  devtool: "eval-source-map",
   module: {
     rules: [
       //use for js & jsx files
       {
         test: /\.jsx?/,
         exclude: /node_modules/,
-        loader: 'babel-loader',
+        loader: "babel-loader",
         options: {
-          presets: ['@babel/preset-env', '@babel/preset-react'],
+          presets: ["@babel/preset-env", "@babel/preset-react"],
         },
       },
       //use for css files
       {
         test: /\.css/,
-        use: ['style-loader', 'css-loader'],
+        use: ["style-loader", "css-loader"],
       },
     ],
   },
   plugins: [
     //use to load react components
     new HtmlWebpackPlugin({
-      title: 'Development',
-      template: './index.html',
+      title: "Development",
+      template: "./index.html",
     }),
   ],
   devServer: {
     //allow to run both front and backend
     static: {
-      publicPath: '/build',
-      directory: path.resolve(__dirname, 'build'),
+      publicPath: "/build",
+      directory: path.resolve(__dirname, "build"),
     },
     //send all request to backend
     proxy: {
-      '/': 'http://localhost:3000',
+      "/api": "http://localhost:3000",
     },
+    port: 8081,
   },
 };

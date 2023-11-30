@@ -8,10 +8,10 @@ const MainContainer = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    fetch('/data')
+    fetch('/api/job-card/data')
       .then((response) => response.json())
       .then((data) => {
-        console.log(data);
+        console.log('this is the data I need: ', data);
         dispatch(syncData(data));
       })
       .catch((err) => {

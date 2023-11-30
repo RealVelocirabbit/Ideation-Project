@@ -1,4 +1,4 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, current } from "@reduxjs/toolkit";
 
 const initialState = {
   Interested: [],
@@ -8,12 +8,17 @@ const initialState = {
   Accepted: [],
   Rejected: [],
 };
+
 const noteSlice = createSlice({
-  name: 'note',
+  name: "note",
   initialState,
   reducers: {
     syncData: (state, action) => {
-      //console.log(`action.payload`, action.payload);
+      // console.log(`action.payload`, action.payload);
+      // statusArray.forEach(ele => {
+      //   state[ele] = action.payload[ele].slice();
+      // })
+      
       state.Interested = state.Interested.slice();
       state.Interested = action.payload.Interested;
 
@@ -33,11 +38,13 @@ const noteSlice = createSlice({
       state.Rejected = action.payload.Rejected;
     },
     deletePost: (state, action) => {
-      console.log(`delepost`, action.payload);
-      state.Interested.splice(
-        state.Interested.findIndex((note) => {
-          console.log(note);
-          note.id === action.payload;
+      const { _id, status } = action.payload;
+    
+      state[status].splice(
+        state[status].findIndex((ele) => {
+          console.log("note", typeof ele);
+          console.log(current(ele))
+          return ele.id === _id;
         }),
         1
       );

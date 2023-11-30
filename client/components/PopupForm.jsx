@@ -1,7 +1,7 @@
-import React from 'react';
-import { useState } from 'react';
-import Button from 'react-bootstrap/Button';
-import Modal from 'react-bootstrap/Modal';
+import React from "react";
+import { useState } from "react";
+import Button from "react-bootstrap/Button";
+import Modal from "react-bootstrap/Modal";
 
 const PopupForm = () => {
   const [show, setShow] = useState(false);
@@ -9,12 +9,20 @@ const PopupForm = () => {
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
-  const [dateApplied, setdateApplied] = useState('');
-  const [company, setCompany] = useState('');
-  const [jobTitle, setJobTitle] = useState('');
-  const [salary, setSalary] = useState('');
-  const [status, setStatus] = useState('');
-  const [link, setLink] = useState('');
+  const [company, setCompany] = useState("");
+  const [jobTitle, setJobTitle] = useState("");
+  const [salary, setSalary] = useState("");
+  const [status, setStatus] = useState("");
+  const [link, setLink] = useState("");
+
+  const statusOptions = [
+    "Interested",
+    "Applied",
+    "Interviewed",
+    "FollowedUp",
+    "Accepted",
+    "Rejected",
+  ];
 
   function handleClick() {
     let formObj = {
@@ -25,11 +33,10 @@ const PopupForm = () => {
       status: status,
       link: link,
     };
-
-    fetch('/', {
+    fetch('/api/job-card', {
       method: 'POST',
       body: JSON.stringify(formObj),
-      headers: { 'Content-Type': 'application/json' },
+      headers: { "Content-Type": "application/json" },
     })
       .then((response) => response.json())
       .then((data) => {
@@ -46,14 +53,14 @@ const PopupForm = () => {
   return (
     <>
       {/* can replace below with our own button element  */}
-      <Button variant='primary' className='formButton' onClick={handleShow}>
+      <Button variant="primary" className="formButton" onClick={handleShow}>
         +
       </Button>
 
       <Modal
         show={show}
         onHide={handleClose}
-        backdrop='static'
+        backdrop="static"
         keyboard={false}
       >
         <Modal.Header closeButton>
@@ -62,17 +69,17 @@ const PopupForm = () => {
         </Modal.Header>
         <Modal.Body>
           <form
-            className='formInput'
+            className="formInput"
             onSubmit={(e) => {
               e.preventDefault();
               {
                 /* setCompany, etc? */
               }
-              setCompany('');
-              setJobTitle('');
-              setSalary('');
-              setStatus('');
-              setLink('');
+              setCompany("");
+              setJobTitle("");
+              setSalary("");
+              setStatus("");
+              setLink("");
               {
                 /*props.newPost(company, jobTitle, etc*/
               }
@@ -80,24 +87,12 @@ const PopupForm = () => {
           >
             {/* form elements below  */}
             <label>
-              {' '}
-              Date Applied:
-              <input
-                id='dateApplied'
-                type='date'
-                value={dateApplied}
-                onChange={(e) => {
-                  setdateApplied(e.target.value);
-                }}
-              />
-            </label>
-            <label>
-              {' '}
+              {" "}
               Company:
               <input
-                id='company'
-                placeholder='Codesmith'
-                type='string'
+                id="company"
+                placeholder="Codesmith"
+                type="string"
                 value={company}
                 onChange={(e) => {
                   setCompany(e.target.value);
@@ -105,12 +100,12 @@ const PopupForm = () => {
               />
             </label>
             <label>
-              {' '}
+              {" "}
               Job Title:
               <input
-                id='jobTitle'
-                placeholder='Software Engineer'
-                type='string'
+                id="jobTitle"
+                placeholder="Software Engineer"
+                type="string"
                 value={jobTitle}
                 onChange={(e) => {
                   setJobTitle(e.target.value);
@@ -118,32 +113,32 @@ const PopupForm = () => {
               />
             </label>
             <label>
-              {' '}
+              {" "}
               Status:
               <select
-                id='status'
+                id="status"
                 value={status}
                 onChange={(e) => {
                   setStatus(e.target.value);
                 }}
               >
                 {/* is there a way to dynamically show these based on the status array? */}
-                <option value='blank'>Select Status</option>
-                <option value='Interested'>Interested</option>
-                <option value='Applied'>Applied</option>
-                <option value='Interviewed'>Interviewed</option>
-                <option value='FollowedUp'>Followed Up</option>
-                <option value='Accepted'>Accepted</option>
-                <option value='Rejected'>Rejected</option>
+                <option value="blank">Select Status</option>
+                <option value="Interested">Interested</option>
+                <option value="Applied">Applied</option>
+                <option value="Interviewed">Interviewed</option>
+                <option value="FollowedUp">Followed Up</option>
+                <option value="Accepted">Accepted</option>
+                <option value="Rejected">Rejected</option>
               </select>
             </label>
             <label>
-              {' '}
+              {" "}
               Salary: $
               <input
-                id='salary'
-                placeholder='100,000'
-                type='number'
+                id="salary"
+                placeholder="100,000"
+                type="number"
                 value={salary}
                 onChange={(e) => {
                   setSalary(e.target.value);
@@ -151,12 +146,12 @@ const PopupForm = () => {
               />
             </label>
             <label>
-              {' '}
+              {" "}
               Link:
               <input
-                id='link'
-                placeholder='www.codesmith.io'
-                type='string'
+                id="link"
+                placeholder="www.codesmith.io"
+                type="string"
                 value={link}
                 onChange={(e) => {
                   setLink(e.target.value);
@@ -167,11 +162,11 @@ const PopupForm = () => {
         </Modal.Body>
         <Modal.Footer>
           {/* do we need this secondary button? or remove the hide? */}
-          <Button variant='secondary' onClick={handleClose}>
+          <Button variant="secondary" onClick={handleClose}>
             Don't Save
           </Button>
           {/* when they click track button - send to database  */}
-          <Button variant='primary' onClick={handleClick}>
+          <Button variant="primary" onClick={handleClick}>
             Let's Track It!
           </Button>
         </Modal.Footer>
