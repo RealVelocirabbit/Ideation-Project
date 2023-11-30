@@ -26,7 +26,6 @@ const PopupForm = () => {
 
   function handleClick() {
     let formObj = {
-      dateApplied: dateApplied,
       company: company,
       title: jobTitle,
       salary: salary,
