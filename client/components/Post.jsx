@@ -21,13 +21,12 @@ const Post = ({ company, title, salary, status, link, _id }) => {
     "lightpink",
     "yellow",
   ];
-
   let randomColor = colorArray[Math.floor(Math.random() * colorArray.length)];
 
   const helper = () => {
     console.log(_id);
     dispatch(deletePost({ _id: _id, status: status }));
-    fetch(`/${_id}`, { method: "DELETE" }).then((data) => console.log(data));
+    fetch(`/api/job-card/${_id}`, { method: "DELETE" }).then((data) => console.log(data));
   };
 
   return (
@@ -51,7 +50,7 @@ const Post = ({ company, title, salary, status, link, _id }) => {
       </p>
       <p>
         <b>Job Link: </b>
-        <a href={`http://${link}`}>Click on Link</a>
+        <a href={link}>Click on Link</a>
       </p>
     </div>
   );

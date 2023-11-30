@@ -9,24 +9,31 @@ const PopupForm = () => {
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
-  const [dateApplied, setdateApplied] = useState('');
-  const [company, setCompany] = useState('');
-  const [jobTitle, setJobTitle] = useState('');
-  const [salary, setSalary] = useState('');
-  const [status, setStatus] = useState('');
-  const [link, setLink] = useState('');
+  const [company, setCompany] = useState("");
+  const [jobTitle, setJobTitle] = useState("");
+  const [salary, setSalary] = useState("");
+  const [status, setStatus] = useState("");
+  const [link, setLink] = useState("");
+
+  const statusOptions = [
+    "Interested",
+    "Applied",
+    "Interviewed",
+    "FollowedUp",
+    "Accepted",
+    "Rejected",
+  ];
 
   function handleClick() {
     let formObj = {
-      dateApplied: dateApplied,
       company: company,
       title: jobTitle,
       salary: salary,
       status: status,
       link: link,
     };
-    fetch("/", {
-      method: "POST",
+    fetch('/api/job-card', {
+      method: 'POST',
       body: JSON.stringify(formObj),
       headers: { "Content-Type": "application/json" },
     })

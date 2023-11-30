@@ -1,8 +1,7 @@
-import React from 'react';
-import { useSelector } from 'react-redux';
-import Post from './Post.jsx';
+import React from "react";
+import { useSelector } from "react-redux";
+import Post from "./Post.jsx";
 import { useDrop } from 'react-dnd';
-
 
 const DisplayNotes = ({ status }) => {
   const [{ isOver }, drop] = useDrop(() => ({
@@ -13,7 +12,7 @@ const DisplayNotes = ({ status }) => {
     }),
   }));
   const changeStatus = (id) => {
-    fetch(`/${id}`, {
+    fetch(`/api/job-card/${id}`, {
       method: 'PATCH',
       body: JSON.stringify({ status }),
       headers: { 'Content-Type': 'application/json' },
@@ -28,7 +27,6 @@ const DisplayNotes = ({ status }) => {
 
     location.reload();
   };
-
   //watching all the arrays in state.notes separately
   const data = useSelector((state) => {
     return state.notes[status];
@@ -39,9 +37,7 @@ const DisplayNotes = ({ status }) => {
     console.log("element _id ", ele._id);
     postArray.push(
       <Post
-        key={ele._id}
-        id={ele._id}
-        dateApplied={ele.dateApplied}
+        _id={ele._id}
         company={ele.company}
         title={ele.title}
         salary={ele.salary}
@@ -51,9 +47,9 @@ const DisplayNotes = ({ status }) => {
     );
   });
   return (
-    <div className='statusColumn' ref={drop}>
-      <label id='status'>{status}</label>
-      <div className='postContainer'>{postArray}</div>
+    <div className="statusColumn" ref={drop}>
+      <label id="status">{status}</label>
+      <div className="postContainer">{postArray}</div>
     </div>
   );
 };
