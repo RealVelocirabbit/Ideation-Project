@@ -39,15 +39,7 @@ const noteSlice = createSlice({
     },
     deletePost: (state, action) => {
       const { _id, status } = action.payload;
-    
-      state[status].splice(
-        state[status].findIndex((ele) => {
-          console.log("note", typeof ele);
-          console.log(current(ele))
-          return ele.id === _id;
-        }),
-        1
-      );
+      state[status] = state[status].filter(el => {return el._id != _id});
     },
   },
 });

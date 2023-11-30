@@ -107,6 +107,39 @@ describe("MainContainer Reducer", () => {
     /*******************************END TESTS FOR EACH PROPERTY*******************************/
   });
   describe('test deleteNote method', () => {
+    let data;
+   beforeEach(() => {
+    data = {
+      Interested: [],
+      Applied: [],
+      Interviewed: [],
+      FollowedUp: [],
+      Accepted: [],
+      Rejected: [],
+    };
+   })
+    it('state should not be strictly equal to returned state', () => {
+      const initialState = state;
+      const returnState = reducer(state, syncData(state));
+      expect(returnState).not.toBe(initialState);
+    })
+    /*******************************TESTS FOR EACH PROPERTYS REMOVAL*******************************/
+    // dispatch(deletePost({ _id: _id, status: status }));
+    it('object in Interested array should be found by id and removed', () => {
+      data.Interested.push({company: "Apple", link: "www.apple.com", salary: "9000", status: "Interested", title: "CEO", _v: 0, _id: "54321"}, {company: "Apple", link: "www.apple.com", salary: "9000", status: "Interested", title: "CEO", _v: 0, _id: "67890"},  {company: "Apple", link: "www.apple.com", salary: "9000", status: "Interested", title: "CEO", _v: 0, _id: "12345"});
+
+      const shouldEqual = [{company: "Apple", link: "www.apple.com", salary: "9000", status: "Interested", title: "CEO", _v: 0, _id: "54321"}, {company: "Apple", link: "www.apple.com", salary: "9000", status: "Interested", title: "CEO", _v: 0, _id: "67890"}];
+
+      const initialInterested = data.Interested;
+      const actionData = { _id: "12345", status: "Interested"};
+      const { Interested } = reducer(data, deletePost(actionData));
+      expect( Interested ).not.toEqual(initialInterested);
+      expect( Interested ).toEqual(shouldEqual);
+    })
+    /*******************************END TESTS FOR EACH PROPERTYS REMOVAL*******************************/
+  })
+});
+
     // need id, and a status, need selected status to have a corrisponding id.
     /*
     object order 
@@ -121,16 +154,6 @@ describe("MainContainer Reducer", () => {
       }
       {company: "Apple", link: "www.apple.com", salary: "9000", status: "CHANGETOSTATUS", title: "CEO", _v: 0, _id: "12345"}
     */ 
-   beforeEach(() => {
-    data = {
-      Interested: [],
-      Applied: [],
-      Interviewed: [],
-      FollowedUp: [],
-      Accepted: [],
-      Rejected: [],
-    };
-   })
     /* 
     const statusArray = [
     'Interested',
@@ -141,17 +164,3 @@ describe("MainContainer Reducer", () => {
     'Rejected',
   ]
   */
-    it('state should not be strictly equal to returned state', () => {
-      const initialState = state;
-      const returnState = reducer(state, syncData(state));
-      // console.log('are they equal: ', state === returnState);//false
-      console.log('this is returnState', returnState);
-      expect(returnState).not.toBe(initialState);
-    })
-    /*******************************TESTS FOR EACH PROPERTYS REMOVAL*******************************/
-    xit('object in Interested array should be found by key and removed', () => {
-      
-    })
-    /*******************************END TESTS FOR EACH PROPERTYS REMOVAL*******************************/
-  })
-});
