@@ -8,17 +8,12 @@ const initialState = {
   Accepted: [],
   Rejected: [],
 };
-
 const noteSlice = createSlice({
   name: "note",
   initialState,
   reducers: {
     syncData: (state, action) => {
-      // console.log(`action.payload`, action.payload);
-      // statusArray.forEach(ele => {
-      //   state[ele] = action.payload[ele].slice();
-      // })
-
+      //console.log(`action.payload`, action.payload);
       state.Interested = state.Interested.slice();
       state.Interested = action.payload.Interested;
 

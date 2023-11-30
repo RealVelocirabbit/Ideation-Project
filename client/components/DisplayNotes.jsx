@@ -11,6 +11,7 @@ const DisplayNotes = ({ status }) => {
       isOver: !!montior.isOver(),
     }),
   }));
+
   const changeStatus = (id) => {
     fetch(`/${id}`, {
       method: 'PATCH',
@@ -27,10 +28,9 @@ const DisplayNotes = ({ status }) => {
 
     location.reload();
   };
-  //watching all the arrays in state.notes separately
-  const data = useSelector((state) => {
-    return state.notes[status];
-  });
+
+  const data = useSelector((state) => state.notes[status]);
+
   const postArray = [];
   data.forEach((ele) => {
     console.log("element ", ele);
