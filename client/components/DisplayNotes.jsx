@@ -1,7 +1,8 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-import { useDrop } from 'react-dnd';
 import Post from './Post.jsx';
+import { useDrop } from 'react-dnd';
+
 
 const DisplayNotes = ({ status }) => {
   const [{ isOver }, drop] = useDrop(() => ({
@@ -11,7 +12,6 @@ const DisplayNotes = ({ status }) => {
       isOver: !!montior.isOver(),
     }),
   }));
-
   const changeStatus = (id) => {
     fetch(`/${id}`, {
       method: 'PATCH',
@@ -29,10 +29,14 @@ const DisplayNotes = ({ status }) => {
     location.reload();
   };
 
-  const data = useSelector((state) => state.notes[status]);
-
+  //watching all the arrays in state.notes separately
+  const data = useSelector((state) => {
+    return state.notes[status];
+  });
   const postArray = [];
   data.forEach((ele) => {
+    console.log("element ", ele);
+    console.log("element _id ", ele._id);
     postArray.push(
       <Post
         key={ele._id}
