@@ -1,4 +1,4 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, current } from "@reduxjs/toolkit";
 
 const initialState = {
   Interested: [],
@@ -13,7 +13,11 @@ const noteSlice = createSlice({
   initialState,
   reducers: {
     syncData: (state, action) => {
-      //console.log(`action.payload`, action.payload);
+      // console.log(`action.payload`, action.payload);
+      // statusArray.forEach(ele => {
+      //   state[ele] = action.payload[ele].slice();
+      // })
+      
       state.Interested = state.Interested.slice();
       state.Interested = action.payload.Interested;
 

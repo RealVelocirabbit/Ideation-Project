@@ -4,6 +4,7 @@ import { useDispatch } from "react-redux";
 import { deletePost } from "../reducers/noteReducer.js";
 import { useDrag } from "react-dnd";
 
+
 const Post = ({ company, title, salary, status, link, _id }) => {
   const [{ isDragging }, drag] = useDrag(() => ({
     type: "post",

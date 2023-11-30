@@ -14,6 +14,7 @@ const PopupForm = () => {
   const [salary, setSalary] = useState("");
   const [status, setStatus] = useState("");
   const [link, setLink] = useState("");
+
   const statusOptions = [
     "Interested",
     "Applied",
@@ -22,6 +23,7 @@ const PopupForm = () => {
     "Accepted",
     "Rejected",
   ];
+
   function handleClick() {
     let formObj = {
       company: company,
