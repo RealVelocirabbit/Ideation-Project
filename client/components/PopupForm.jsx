@@ -23,7 +23,7 @@ const PopupForm = () => {
       status: status,
       link: link,
     };
-    fetch('/', {
+    fetch('/api/job-card', {
       method: 'POST',
       body: JSON.stringify(formObj),
       headers: { 'Content-Type': 'application/json' },

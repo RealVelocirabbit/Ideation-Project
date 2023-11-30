@@ -13,7 +13,7 @@ const Post = ({ company, title, salary, status, link, key }) => {
     'yellow',
   ];
   let randomColor = colorArray[Math.floor(Math.random() * colorArray.length)];
-
+  
   return (
     <div className='postBox' style={{ backgroundColor: `${randomColor}` }}>
       <Button onClick={() => dispatch(deletePost(key))}>X</Button>
