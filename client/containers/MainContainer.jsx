@@ -6,7 +6,8 @@ import { syncData } from '../reducers/noteReducer.js';
 
 const MainContainer = () => {
   const dispatch = useDispatch();
-
+  
+  //this is deprecated, update with something else
   useEffect(() => {
     fetch('/api/job-card/data')
       .then((response) => response.json())

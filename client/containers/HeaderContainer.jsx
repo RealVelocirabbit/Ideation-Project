@@ -1,28 +1,26 @@
 import React, {useState, useEffect} from 'react';
+import {useDispatch, useSelector} from 'react-redux'
 import PopupForm from '../components/PopupForm.jsx';
 import { jwtDecode } from "jwt-decode";
+import {setUser, deleteUser} from '../reducers/userReducer.js'
 
 
 const HeaderContainer = () => {
 
-  const [user, setUser] = useState({})
-
-  // const userObj = {}
+  // const [user, setUser] = useState({})
+const dispatch = useDispatch()
 
   function handleCallbackResponse(response) {
-    console.log("jwt token", response.credential);
-    const userObj = jwtDecode(response.credential)
-    console.log(userObj)
-    setUser(userObj)
+    const userObj = jwtDecode(response.credential);
+    dispatch(setUser(userObj));
     document.getElementById("signIn").hidden = true
   }
 
   //if sign out was clicked
   function handleSignout (event) {
     console.log(event);
-    setUser({})
-    // userObj = {}
-    document.getElementById("signIn").hidden = false
+    dispatch(deleteUser());
+    document.getElementById("signIn").hidden = false;
   }
   
   useEffect(() => {

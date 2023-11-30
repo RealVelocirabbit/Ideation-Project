@@ -15,9 +15,6 @@ const noteSlice = createSlice({
   reducers: {
     syncData: (state, action) => {
       // console.log(`action.payload`, action.payload);
-      // statusArray.forEach(ele => {
-      //   state[ele] = action.payload[ele].slice();
-      // })
       
       state.Interested = state.Interested.slice();
       state.Interested = action.payload.Interested;
