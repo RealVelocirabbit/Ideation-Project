@@ -31,8 +31,7 @@ jobsRouter.patch('/:id', jobController.updateStatus, (req, res) => {
 jobsRouter.delete('/:id', jobController.deleteStatus, (req, res) => {
   return res.status(200).redirect('/');
 });
-
-jobsRouter.use((req, res) => res.status(404).send('Page Not Found'));
+app.use((req, res) => res.status(404).send('Page Not Found'));
 
 //Global error Handle
 jobsRouter.use((err, req, res, next) => {

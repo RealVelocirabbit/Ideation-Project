@@ -53,7 +53,7 @@ const jobController = {
     } catch (error) {
       return next({
         log: `Error in the jobController.updateStatus: ${error}`,
-        message: { err: "Error occured in updating status" },
+        message: { err: "Error occured: could not update status" },
         status: 500,
       });
     }

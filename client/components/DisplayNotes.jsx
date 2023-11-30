@@ -12,7 +12,7 @@ const DisplayNotes = ({ status }) => {
     }),
   }));
   const changeStatus = (id) => {
-    fetch(`/${id}`, {
+    fetch(`/api/job-card/${id}`, {
       method: 'PATCH',
       body: JSON.stringify({ status }),
       headers: { 'Content-Type': 'application/json' },

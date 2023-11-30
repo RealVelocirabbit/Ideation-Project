@@ -47,7 +47,7 @@ module.exports = {
     },
     //send all request to backend
     proxy: {
-      "/": "http://localhost:3000",
+      "/api": "http://localhost:3000",
     },
     port: 8081,
   },

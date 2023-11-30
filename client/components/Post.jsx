@@ -26,7 +26,7 @@ const Post = ({ company, title, salary, status, link, _id }) => {
   const helper = () => {
     console.log(_id);
     dispatch(deletePost({ _id: _id, status: status }));
-    fetch(`/${_id}`, { method: "DELETE" }).then((data) => console.log(data));
+    fetch(`/api/job-card/${_id}`, { method: "DELETE" }).then((data) => console.log(data));
   };
 
   return (
