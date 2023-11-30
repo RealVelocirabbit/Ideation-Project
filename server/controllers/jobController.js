@@ -1,4 +1,4 @@
-const { Job } = require('../models/jobModel');
+const { Job } = require("../models/jobModel");
 
 const jobController = {
   //create job app.
@@ -16,15 +16,15 @@ const jobController = {
         return next();
       } else {
         return next({
-          log: 'Error in the jobController.createJob',
-          message: { err: 'Error in creating new job application' },
+          log: "Error in the jobController.createJob",
+          message: { err: "Error in creating new job application" },
           status: 400,
         });
       }
     } catch (error) {
       return next({
         log: `Error in the jobController.createJob: ${error}`,
-        message: { err: 'Error in creating new job application' },
+        message: { err: "Error in creating new job application" },
         status: 500,
       });
     }
@@ -34,25 +34,26 @@ const jobController = {
     //update the status of the job.
     try {
       const jobId = req.params.id;
+      console.log("jobID: ", jobId);
       const { company, title, salary, status, link } = req.body;
 
-      if (company.length && title.length && status.length) {
+      if (status.length) {
         const updatedJob = await Job.updateOne(
-          { id: jobId },
-          { company, title, salary, status, link }
+          { _id: jobId },
+          { status }
         );
         return next();
       } else {
         return next({
-          log: 'Error in the jobController.updateStatus',
-          message: { err: 'Error occured in updating status' },
+          log: "Error in the jobController.updateStatus",
+          message: { err: "Error occured in updating status" },
           status: 400,
         });
       }
     } catch (error) {
       return next({
         log: `Error in the jobController.updateStatus: ${error}`,
-        message: { err: 'Error occured in updating status' },
+        message: { err: "Error occured in updating status" },
         status: 500,
       });
     }
@@ -61,20 +62,21 @@ const jobController = {
   async deleteStatus(req, res, next) {
     try {
       const jobId = req.params.id;
+      console.log(jobId);
       if (jobId) {
         const deletedJob = await Job.findByIdAndDelete(jobId);
         return next();
       } else {
         return next({
-          log: 'Error in the jobController.deleteStatus',
-          message: { err: 'Error occured in deleting job' },
+          log: "Error in the jobController.deleteStatus",
+          message: { err: "Error occured in deleting job" },
           status: 400,
         });
       }
     } catch (error) {
       return next({
         log: `Error in the jobController.deleteStatus: ${error}`,
-        message: { err: 'Error occured in deleting job' },
+        message: { err: "Error occured in deleting job" },
         status: 500,
       });
     }
@@ -82,12 +84,12 @@ const jobController = {
 
   async syncData(req, res, next) {
     try {
-      const allInterested = await Job.find({ status: 'interested' });
-      const allApplied = await Job.find({ status: 'applied' });
-      const allnterviewed = await Job.find({ status: 'interviewScheduled' });
-      const allFollowedup = await Job.find({ status: 'followUp' });
-      const allRejected = await Job.find({ status: 'noOffer' });
-      const allAccepted = await Job.find({ status: 'offer' });
+      const allInterested = await Job.find({ status: "Interested" });
+      const allApplied = await Job.find({ status: "Applied" });
+      const allnterviewed = await Job.find({ status: "Interviewed" });
+      const allFollowedup = await Job.find({ status: "FollowedUp" });
+      const allRejected = await Job.find({ status: "Rejected" });
+      const allAccepted = await Job.find({ status: "Accepted" });
 
       let syncObject = {
         Interested: allInterested,
@@ -103,7 +105,7 @@ const jobController = {
     } catch (error) {
       return next({
         log: `Error in the jobController.syncData: ${error}`,
-        message: { err: 'Error occured in syncing' },
+        message: { err: "Error occured in syncing" },
         status: 500,
       });
     }
