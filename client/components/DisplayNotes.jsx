@@ -2,7 +2,6 @@ import React from "react";
 import { useSelector } from "react-redux";
 import { useDrop } from 'react-dnd';
 import Post from "./Post.jsx";
-import { useDrop } from 'react-dnd';
 
 const DisplayNotes = ({ status }) => {
   const [{ isOver }, drop] = useDrop(() => ({

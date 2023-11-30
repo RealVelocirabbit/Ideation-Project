@@ -7,8 +7,6 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { DndProvider } from 'react-dnd';
 import { HTML5Backend } from 'react-dnd-html5-backend';
 import styles from './style.css';
-import { DndProvider } from 'react-dnd';
-import { HTML5Backend } from 'react-dnd-html5-backend';
 
 const root = createRoot(document.getElementById('root'));
 root.render(
