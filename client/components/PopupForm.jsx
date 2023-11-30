@@ -22,16 +22,8 @@ const PopupForm = () => {
     "Accepted",
     "Rejected",
   ];
-  const [dateApplied, setdateApplied] = useState('');
-  const [company, setCompany] = useState('');
-  const [jobTitle, setJobTitle] = useState('');
-  const [salary, setSalary] = useState('');
-  const [status, setStatus] = useState('');
-  const [link, setLink] = useState('');
-
   function handleClick() {
     let formObj = {
-      dateApplied: dateApplied,
       company: company,
       title: jobTitle,
       salary: salary,
@@ -91,18 +83,6 @@ const PopupForm = () => {
             }}
           >
             {/* form elements below  */}
-            <label>
-              {' '}
-              Date Applied:
-              <input
-                id='dateApplied'
-                type='date'
-                value={dateApplied}
-                onChange={(e) => {
-                  setdateApplied(e.target.value);
-                }}
-              />
-            </label>
             <label>
               {' '}
               Company:
