@@ -38,16 +38,18 @@ const noteSlice = createSlice({
     },
     deletePost: (state, action) => {
       const { _id, status } = action.payload;
-      console.log("status: ", typeof status); //FollowedUp
-      console.log(_id);
       state[status].splice(
         state[status].findIndex((ele) => {
-          console.log("note: ", ele);
           return ele.id === _id;
         }),
         1
       );
     },
+    // updatePost: (state, action) => {
+    //   const { _id, status } = action.payload;
+    //   console.log("we are in updatePost")
+    //   return {}
+    // },
   },
 });
 

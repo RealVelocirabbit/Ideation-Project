@@ -67,7 +67,6 @@ const jobController = {
   async deleteStatus(req, res, next) {
     try {
       const jobId = req.params.id;
-      console.log(jobId);
       if (jobId) {
         const deletedJob = await Job.findByIdAndDelete(jobId);
         return next();
@@ -76,7 +75,7 @@ const jobController = {
           log: "Error in the jobController.deleteStatus",
           message: { err: "Error occured in deleting job" },
           status: 400,
-        });
+        });``
       }
     } catch (error) {
       return next({

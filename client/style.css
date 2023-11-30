@@ -1,21 +1,21 @@
 /* Header Bar */
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');
 body{
-  /* background-image: url("../bgi-2.jpeg"); */
+  background-image: url("../BGI.webp");
   background-size: cover;
   background-color: #cccccc;
   /* background-repeat: no-repeat; */
 
 }
-.modal{
-  /* background-color: #cccccc; */
-  
-}
 .headerContainer {
   display: flex;
-  border: 1px solid black;
+  border: 2px solid black;
   margin: 15px;
   padding: 10px;
   justify-content: space-between;
+}
+#header{
+  font-family: 'Bebas Neue Bold', sans-serif;
 }
 
 .formButton {
@@ -38,6 +38,7 @@ body{
 /* Job Container */
 .jobContainer {
   display: grid;
+  border: 1.5px solid black;
   grid-template-columns: repeat(6, 1fr);
   margin: 15px;
 }
@@ -46,9 +47,11 @@ body{
 .statusColumn {
   display: flex;
   flex-direction: column;
-  border: 1px solid black;
+  border: 1.5px solid black;
   height: 91vh;
   padding: 5px;
+  border: 1px solid black;
+
 }
 
 #status {
@@ -58,6 +61,7 @@ body{
   padding: 10px;
   font-weight: 600;
   font-size: 20px;
+  border: 2px solid black;
 }
 
 /* Post Container */
@@ -77,6 +81,8 @@ body{
   width: 125px;
   border-radius: 15px;
   background-color: lightblue;
+  border: 1px solid black;
+
 }
 
 .postBox:hover {
@@ -99,4 +105,10 @@ body{
 
 .postBoxBtn{
   border-radius: 32px;
+}
+
+.buttonHeader{
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
