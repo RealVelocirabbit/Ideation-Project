@@ -2,6 +2,8 @@ import React from 'react';
 import DisplayNotes from '../components/DisplayNotes.jsx';
 
 const JobContainer = () => {
+
+  
   const statusArray = [
     'Interested',
     'Applied',

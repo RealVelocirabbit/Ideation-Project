@@ -1,10 +1,21 @@
 /* Header Bar */
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');
+body{
+  /* background-image: url("../BGI.webp"); */
+  background-size: cover;
+  background-color: #cccccc;
+  /* background-repeat: no-repeat; */
+
+}
 .headerContainer {
   display: flex;
-  border: 1px solid black;
+  border: 2px solid black;
   margin: 15px;
   padding: 10px;
   justify-content: space-between;
+}
+#header{
+  font-family: 'Bebas Neue Bold', sans-serif;
 }
 
 .formButton {
@@ -27,6 +38,7 @@
 /* Job Container */
 .jobContainer {
   display: grid;
+  border: 1.5px solid black;
   grid-template-columns: repeat(6, 1fr);
   margin: 15px;
 }
@@ -35,9 +47,11 @@
 .statusColumn {
   display: flex;
   flex-direction: column;
-  border: 1px solid black;
+  border: 1.5px solid black;
   height: 91vh;
   padding: 5px;
+  border: 1px solid black;
+
 }
 
 #status {
@@ -47,6 +61,7 @@
   padding: 10px;
   font-weight: 600;
   font-size: 20px;
+  border: 2px solid black;
 }
 
 /* Post Container */
@@ -63,7 +78,11 @@
   border: 1px solid grey;
   padding: 5px;
   margin: 5px;
-  width: 135px;
+  width: 125px;
+  border-radius: 15px;
+  background-color: lightblue;
+  border: 1px solid black;
+
 }
 
 .postBox:hover {
@@ -82,4 +101,19 @@
 .postBox p {
   margin: 0px;
   font-size: x-small;
+}
+
+.postBoxBtn{
+  border-radius: 32px;
+}
+
+.buttonHeader{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.buttonHeader{
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }

@@ -14,10 +14,10 @@ const noteSlice = createSlice({
   initialState,
   reducers: {
     syncData: (state, action) => {
-      // console.log(`action.payload`, action.payload);
       
       state.Interested = state.Interested.slice();
       state.Interested = action.payload.Interested;
+      console.log(`action.payload`, action.payload);
 
       state.Applied = state.Applied.slice();
       state.Applied = action.payload.Applied;

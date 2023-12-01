@@ -1,21 +1,20 @@
 import React, {useState, useEffect} from 'react';
-import {useDispatch, useSelector} from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import PopupForm from '../components/PopupForm.jsx';
 import { jwtDecode } from "jwt-decode";
-import {setUser, deleteUser} from '../reducers/userReducer.js'
-
+import { setUser, deleteUser } from '../reducers/userReducer.js'
+import { persistStore, persistReducer } from 'redux-persist'
 
 const HeaderContainer = () => {
 
-  // const [user, setUser] = useState({})
-const dispatch = useDispatch()
+  const dispatch = useDispatch()
 
   function handleCallbackResponse(response) {
     const userObj = jwtDecode(response.credential);
     dispatch(setUser(userObj));
     document.getElementById("signIn").hidden = true
   }
-
+  
   //if sign out was clicked
   function handleSignout (event) {
     console.log(event);
@@ -34,6 +33,10 @@ const dispatch = useDispatch()
       size: "large",
     });
   });
+
+  const user = useSelector((state) => {
+    return state.users.user
+  })
 
   return (
     <div className='headerContainer'>

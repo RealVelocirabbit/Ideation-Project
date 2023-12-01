@@ -4,13 +4,15 @@ const jobController = {
   //create job app.
   async createJob(req, res, next) {
     try {
-      const { company, title, salary, status, link } = req.body;
+      const { user, company, title, salary, status, link } = req.body;
+      console.log("user req body", user)
       if (
         company.length &&
         title.length &&
         status.length
       ) {
         const newJob = await Job.create({
+          user,
           company,
           title,
           salary,
@@ -38,9 +40,7 @@ const jobController = {
     //update the status of the job.
     try {
       const jobId = req.params.id;
-      console.log("jobID: ", jobId);
-      const { company, title, salary, status, link } = req.body;
-
+      const { user, company, title, salary, status, link } = req.body;
       if (status.length) {
         const updatedJob = await Job.updateOne(
           { _id: jobId },
@@ -55,6 +55,7 @@ const jobController = {
         });
       }
     } catch (error) {
+      console.error(error.message)
       return next({
         log: `Error in the jobController.updateStatus: ${error}`,
         message: { err: "Error occured in updating status" },
@@ -87,13 +88,16 @@ const jobController = {
   },
 
   async syncData(req, res, next) {
+    console.log(req.query.id)
+    const id = req.query.id
+    
     try {
-      const allInterested = await Job.find({ status: "Interested" });
-      const allApplied = await Job.find({ status: "Applied" });
-      const allnterviewed = await Job.find({ status: "Interviewed" });
-      const allFollowedup = await Job.find({ status: "FollowedUp" });
-      const allRejected = await Job.find({ status: "Rejected" });
-      const allAccepted = await Job.find({ status: "Accepted" });
+      const allInterested = await Job.find({ status: "Interested", user: id });
+      const allApplied = await Job.find({ status: "Applied", user: id });
+      const allnterviewed = await Job.find({ status: "Interviewed", user: id });
+      const allFollowedup = await Job.find({ status: "FollowedUp", user: id });
+      const allRejected = await Job.find({ status: "Rejected", user: id });
+      const allAccepted = await Job.find({ status: "Accepted", user: id });
 
       let syncObject = {
         Interested: allInterested,
@@ -107,6 +111,7 @@ const jobController = {
       res.locals.syncData = syncObject;
       return next();
     } catch (error) {
+      console.error(error.message);
       return next({
         log: `Error in the jobController.syncData: ${error}`,
         message: { err: "Error occured in syncing" },

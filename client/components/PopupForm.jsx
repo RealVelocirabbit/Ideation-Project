@@ -1,4 +1,5 @@
 import React from "react";
+import {useDispatch, useSelector} from 'react-redux'
 import { useState } from "react";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
@@ -8,6 +9,12 @@ const PopupForm = () => {
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+
+  // const [user, setUser] = useState("");
+  const user = useSelector((state) => {
+    return state.users.user
+  })
+  //access user.jti now
 
   const [company, setCompany] = useState("");
   const [jobTitle, setJobTitle] = useState("");
@@ -26,6 +33,7 @@ const PopupForm = () => {
 
   function handleClick() {
     let formObj = {
+      user: user.jti,
       company: company,
       title: jobTitle,
       salary: salary,
@@ -161,11 +169,19 @@ const PopupForm = () => {
         </Modal.Body>
         <Modal.Footer>
           {/* do we need this secondary button? or remove the hide? */}
-          <Button variant="secondary" onClick={handleClose}>
-            Don't Save
+          <Button
+            style={{ backgroundColor: "rgb(220, 53, 69)" }}
+            variant="secondary"
+            onClick={handleClose}
+          >
+            Cancel
           </Button>
           {/* when they click track button - send to database  */}
-          <Button variant="primary" onClick={handleClick}>
+          <Button
+            style={{ backgroundColor: "rgb(0, 165, 80)" }}
+            variant="primary"
+            onClick={handleClick}
+          >
             Let's Track It!
           </Button>
         </Modal.Footer>

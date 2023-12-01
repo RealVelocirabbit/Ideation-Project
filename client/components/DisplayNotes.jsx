@@ -19,7 +19,7 @@ const DisplayNotes = ({ status }) => {
     })
       .then((response) => response.json())
       .then((data) => {
-        console.log(data);
+        console.log("data: ",data);
       })
       .catch((err) => {
         console.log(err);
@@ -27,17 +27,20 @@ const DisplayNotes = ({ status }) => {
 
     location.reload();
   };
+
   //watching all the arrays in state.notes separately
   const data = useSelector((state) => {
+    // console.log('display notes state', state)
     return state.notes[status];
   });
+
+  
   const postArray = [];
   data.forEach((ele) => {
-    console.log("element ", ele);
-    console.log("element _id ", ele._id);
     postArray.push(
       <Post
-        key={ele.id}
+        key={ele._id}
+        _id={ele._id}
         company={ele.company}
         title={ele.title}
         salary={ele.salary}
@@ -47,7 +50,7 @@ const DisplayNotes = ({ status }) => {
     );
   });
   return (
-    <div className='statusColumn'>
+    <div className='statusColumn' ref={drop}>
       <label id='status'>{status}</label>
       <div className='postContainer'>{postArray}</div>
     </div>
